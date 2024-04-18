@@ -4,9 +4,9 @@ import Layout from "../components/layout";
 function ErrorPage() {
   return(
     <Layout>
-    <h1>
-      OOPS! PAGE NOT EXISTS
-    </h1>
+    <div className="d-flex justify-content-center align-items-center" style={{height: "50vh"}}>
+      <h4 className="text-deark">Page Not Found !</h4>
+    </div>
     </Layout>
   )
 }

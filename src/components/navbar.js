@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
 
 import { useEffect } from 'react';
 import { useLazyQuery } from '@apollo/client';
@@ -37,13 +38,13 @@ function NavigationBar() {
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
       <Container>
-        <Navbar.Brand href="/">Postit</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Postit</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/posts">My Posts</Nav.Link>
-            <Nav.Link href="/posts/all">Community Posts</Nav.Link>
-            <Nav.Link href="/post/new">Create Post</Nav.Link>
+            <Nav.Link as={Link} to="/posts" href="/posts">My Posts</Nav.Link>
+            <Nav.Link as={Link} to="/posts/all" href="/posts/all">Community Posts</Nav.Link>
+            <Nav.Link as={Link} to="/post/new" href="/post/new">Create Post</Nav.Link>
           </Nav>
           <Nav>
             <Navbar.Text>

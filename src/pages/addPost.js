@@ -39,6 +39,7 @@ function AddPostForm() {
 
   return (
     <Layout>
+      <div className='mt-5'>
       <h1>Got something to say?</h1>
       <br />
     <Form onSubmit={handleSubmit}>
@@ -76,6 +77,7 @@ function AddPostForm() {
         </p>
       )}
     </Form>
+    </div>
     </Layout>
   );
 }

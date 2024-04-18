@@ -31,19 +31,24 @@ function HomePage() {
 
   return (
     <Layout>
-      <Row>
-        {
-          data.getPosts.length
-            ? data.getPosts.map((post) => {
-              return (
-                <Col key={post.id} xs={6} md={12} className="mb-2">
-                  <PostCard post={post} />
-                </Col>
-              )
-            })
-            : <p>No Posts available!</p>
-        }
-      </Row>
+      <div className='mt-5'>
+        <h2>All Posts</h2>
+        <Row>
+          {
+            data.getPosts.length
+              ? data.getPosts.map((post) => {
+                return (
+                  <Col key={post.id} xs={12} md={6} className="mb-2">
+                    <PostCard post={post} />
+                  </Col>
+                )
+              })
+              : <div className='d-flex justify-content-center align-items-center' style={{ height: "20vh" }}>
+                <h5 className='text-dark'>No Posts Avaialable !</h5>
+              </div>
+          }
+        </Row>
+      </div>
     </Layout>
   );
 }

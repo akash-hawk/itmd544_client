@@ -63,6 +63,7 @@ function EditPostPage() {
 
   return (
     <Layout>
+    <div className='mt-5'>
       <h1>Quick, no one will know !</h1>
       <br />
       <Form onSubmit={handleSubmit}>
@@ -98,6 +99,7 @@ function EditPostPage() {
           <p className="text-success mt-2">{updateData.updatePost.success && 'Post updated successfully!'}</p>
         )}
       </Form>
+      </div>
     </Layout>
   );
 }

@@ -23,8 +23,8 @@ function MyPostsPage() {
   const navigate = useNavigate();
   const userId = localStorage.getItem('userId');
 
-  useEffect(()=>{
-    if(!userId){
+  useEffect(() => {
+    if (!userId) {
       navigate("/signin");
     }
   }, [])
@@ -39,17 +39,22 @@ function MyPostsPage() {
 
   return (
     <Layout>
-      <Row>
-        {data.getPostByUserId.length ? (
-          data.getPostByUserId.map((post) => (
-            <Col key={post.id} xs={6} md={12} className="mb-2">
-              <PostCard post={post} />
-            </Col>
-          ))
-        ) : (
-          <p>No Posts available!</p>
-        )}
-      </Row>
+      <div className='mt-5'>
+        <h2>My Posts</h2>
+        <Row>
+          {data.getPostByUserId.length ? (
+            data.getPostByUserId.map((post) => (
+              <Col key={post.id} xs={6} md={12} className="mb-2">
+                <PostCard post={post} />
+              </Col>
+            ))
+          ) : (
+            <div className='d-flex justify-content-center align-items-center' style={{ height: "20vh" }}>
+              <h5 className='text-dark'>No Posts Avaialable !</h5>
+            </div>
+          )}
+        </Row>
+      </div>
     </Layout>
   );
 }

@@ -85,9 +85,11 @@ function SignupPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password" />
           </Form.Group>
+
           <Button variant="dark" type="submit" className="w-100">
             Signup
           </Button>
+          
         </Form>
       </Container>
     </Container>

@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -12,7 +13,9 @@ function PostCard({post}) {
         <Card.Text>
           {post.body}
         </Card.Text>
-        <Button variant="primary btn-sm">View Post</Button>
+        <Link 
+          type="button" 
+          variant="dark btn btn-sm" to={`/posts/${post.id}`}>View Post</Link>
       </Card.Body>
     </Card>
   )

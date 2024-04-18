@@ -4,6 +4,8 @@ import Col from 'react-bootstrap/Col';
 
 import PostCard from '../components/postCard';
 import Layout from '../components/layout';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GET_POSTS_BY_USER_ID = gql`
   query GetPostByUserId($userId: String!) {
@@ -18,7 +20,14 @@ const GET_POSTS_BY_USER_ID = gql`
 `;
 
 function MyPostsPage() {
+  const navigate = useNavigate();
   const userId = localStorage.getItem('userId');
+
+  useEffect(()=>{
+    if(!userId){
+      navigate("/signin");
+    }
+  }, [])
 
   const { data, loading } = useQuery(GET_POSTS_BY_USER_ID, {
     variables: { userId },

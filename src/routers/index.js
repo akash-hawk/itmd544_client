@@ -9,6 +9,7 @@ import PostsPage from '../pages/posts';
 import PostPage from '../pages/post';
 import AddPostPage from '../pages/addPost';
 import EditPostPage from '../pages/editPost';
+import ErrorPage from '../pages/error';
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
         <Route path="/posts/all" element={<AllPostsPage />} />
         <Route path="/posts/:id" element={<PostPage />} />
         <Route path="/posts" element={<PostsPage />} />
+        <Route path="/:anything" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );

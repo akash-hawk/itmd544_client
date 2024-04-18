@@ -10,6 +10,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const client = new ApolloClient({
   uri: "http://localhost:8000/graphql",
   cache: new InMemoryCache(),
+  headers: {
+    token: localStorage.getItem("token") || ""
+  }
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

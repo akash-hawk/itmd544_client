@@ -7,6 +7,7 @@ import SignupPage from '../pages/signup';
 import AllPostsPage from '../pages/allPosts';
 import PostsPage from '../pages/posts';
 import PostPage from '../pages/post';
+import AddPostPage from '../pages/addPost';
 
 const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ const AppRouter = () => {
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/signup" element={<SignupPage />} />
 
+        <Route path="/post/new" element={<AddPostPage />} />
         <Route path="/posts/all" element={<AllPostsPage />} />
         <Route path="/posts/:id" element={<PostPage />} />
         <Route path="/posts" element={<PostsPage />} />

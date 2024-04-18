@@ -41,8 +41,9 @@ function NavigationBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/posts/all">All Posts</Nav.Link>
             <Nav.Link href="/posts">My Posts</Nav.Link>
+            <Nav.Link href="/posts/all">Community Posts</Nav.Link>
+            <Nav.Link href="/post/new">Create Post</Nav.Link>
           </Nav>
           <Nav>
             <Navbar.Text>

@@ -39,8 +39,8 @@ function HomePage() {
             data.getPosts.length
             ? data.getPosts.map((post)=>{
               return (
-                <Col xs={6} md={12} class="mb-2">
-                  <PostCard key={post.id} post={post} />
+                <Col key={post.id} xs={6} md={12} className="mb-2">
+                  <PostCard post={post} />
                 </Col>
               )
             })

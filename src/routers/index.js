@@ -8,6 +8,7 @@ import AllPostsPage from '../pages/allPosts';
 import PostsPage from '../pages/posts';
 import PostPage from '../pages/post';
 import AddPostPage from '../pages/addPost';
+import EditPostPage from '../pages/editPost';
 
 const AppRouter = () => {
   return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
         <Route path="/signup" element={<SignupPage />} />
 
         <Route path="/post/new" element={<AddPostPage />} />
+        <Route path="/post/edit/:id" element={<EditPostPage />} />
         <Route path="/posts/all" element={<AllPostsPage />} />
         <Route path="/posts/:id" element={<PostPage />} />
         <Route path="/posts" element={<PostsPage />} />

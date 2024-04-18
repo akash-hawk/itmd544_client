@@ -3,32 +3,41 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { gql } from 'graphql-tag';
 
 function NavigationBar() {
+  const userId = localStorage.getItem('userId');
+  const [email, setEmail] = useState("");
   const [getCurrentUser, { data, error }] = useLazyQuery(gql`
-    query GetCurrentUser {
-      getCurrentUser {
-        id
-        email
-        firstName
-        lastName
-        profileImage
-        userType
-      }
+  query GetUserById($userId: String!) {
+    getUserById(userId: $userId) {
+      id
+      firstName
+      lastName
+      email
+      profileImage
+      userType
     }
-  `);
+  }
+  `, {
+    variables: { userId }
+  });
 
   useEffect(() => {
-    // getCurrentUser();
+    if(!localStorage.getItem("currentUser")) {
+      getCurrentUser();
+    } else{ 
+      setEmail(JSON.parse(localStorage.getItem("currentUser")).email);
+    }
   }, []);
 
   useEffect(() => {
-    if (data && data.getCurrentUser) {
+    if (data && data.getUserById) {
       console.log(data);
-      localStorage.setItem('currentUser', JSON.stringify(data.getCurrentUser));
+      setEmail(data.getUserById.email);
+      localStorage.setItem('currentUser', JSON.stringify(data.getUserById));
     }
     if (error && error.message) {
       alert(error.message);
@@ -48,7 +57,7 @@ function NavigationBar() {
           </Nav>
           <Nav>
             <Navbar.Text>
-              Signed in as: <a href="#login">Mark Otto</a>
+              Signed in as: <a href="#login">{email}</a>
             </Navbar.Text>
           </Nav>
         </Navbar.Collapse>

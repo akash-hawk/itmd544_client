@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import Layout from '../components/layout';
+import Button from 'react-bootstrap/esm/Button';
 
 const GET_POSTS_BY_USER_ID = gql`
   query GetPostById($postId: String!) {
@@ -63,22 +64,27 @@ function MyPostsPage() {
     return (
       <Layout>
         <div className='mt-5'>
-          <h2>{data.getPostById.title}</h2>
+          <img src='https://picsum.photos/800/250' style={{width: "100%"}} />
+          <h2 className='mt-3'>{data.getPostById.title}</h2>
           <p>{data.getPostById.body}</p>
           <p>
             <b>Posted By: </b>
             {data.getPostById.user.email}
           </p>
-          <Link
-            type='button'
-            variant='dark btn btn-sm'
-            to={`/post/edit/${data.getPostById.id}`}
-          >
-            Edit Post
-          </Link>
-          <button className='btn btn-sm btn-danger ml-2' onClick={handleDelete}>
-            Delete Post
-          </button>
+          <Button 
+            className='btn btn-sm btn-dark' 
+            as={Link} 
+            to={`/post/edit/${data.getPostById.id}`}>
+              Edit Post
+          </Button>
+          
+          <Button 
+            className='btn btn-sm btn-outline-danger'
+            variant='text' 
+            style={{marginLeft: "12px"}}
+            onClick={handleDelete}>
+              Delete Post
+          </Button>
         </div>
       </Layout>
     );

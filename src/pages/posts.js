@@ -44,7 +44,7 @@ function MyPostsPage() {
         <Row>
           {data.getPostByUserId.length ? (
             data.getPostByUserId.map((post) => (
-              <Col key={post.id} xs={6} md={12} className="mb-2">
+              <Col key={post.id} xs={12} md={6} className="mb-2">
                 <PostCard post={post} />
               </Col>
             ))

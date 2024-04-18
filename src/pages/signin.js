@@ -14,19 +14,27 @@ function SigninPage() {
   const [password, setPassword] = useState("");
 
   const [getUserToken, { data, error }] = useLazyQuery(gql`
-    query Query($email: String!, $password: String!) {
-      getUserToken(email: $email, password: $password)
+    query GetUserToken($email: String!, $password: String!) {
+      getUserToken(email: $email, password: $password) {
+        userId
+        token
+        success
+        message
+      }
     }
   `);
 
   const handleSubmit = async (event) => {
     event.preventDefault(); 
     await getUserToken({ variables: { email, password } });
-    if (data && data.getUserToken) {
-      localStorage.setItem('token', data.getUserToken);
+    if (data && data.getUserToken && data.getUserToken.success) {
+      localStorage.setItem('token', data.getUserToken.token);
+      localStorage.setItem('userId', data.getUserToken.userId);
       navigate("/");
+    } else {
+      alert(data.getUserToken.message);
     }
-  
+
     if (error) {
       console.log(error.message);
       alert("Authentication failed. Please check your credentials.");

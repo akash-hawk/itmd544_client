@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery, useMutation, gql } from '@apollo/client';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -26,7 +26,6 @@ const UPDATE_POST = gql`
 `;
 
 function EditPostPage() {
-  const navigate = useNavigate();
   const { id } = useParams();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -50,10 +49,8 @@ function EditPostPage() {
     try {
       const { data } = await updatePost({ variables: { postId: id, title, body } });
       console.log(data);
-      alert("Post Updated Successfully !");
-      navigate('/posts/' + id);
+      window.location.href = '/posts/' + id
     } catch (error) {
-      console.error(error);
       alert(error.message);
     }
   };

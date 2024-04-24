@@ -45,11 +45,9 @@ function MyPostsPage() {
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
-        console.log("Yes");
         await deletePost({ variables: { postId: id } });
-        navigate("/posts");
+        window.location.href = "/posts";
       } catch (error) {
-        console.log("No");
         console.error('Error deleting post:', error);
         alert("Something went wrong!");
       }

@@ -21,12 +21,22 @@ function UserCard({ user }) {
             </Card.Text>
           </div>
           <div>
-            <Button
+            {
+              user.active
+              ?   <Button
               onClick={handleBlock}
-              variant="dark btn btn-sm"
+              variant="btn btn-sm"
+              className="btn-outline-danger"
             >
               Block
             </Button>
+              :  <Button
+              onClick={handleBlock}
+              variant="danger btn btn-sm"
+            >
+              Unblock
+            </Button>
+            }
           </div>
         </div>
 

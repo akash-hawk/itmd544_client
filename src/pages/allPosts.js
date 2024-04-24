@@ -12,7 +12,11 @@ function HomePage() {
   const { data, loading } = useQuery(GET_ALL_POSTS);
 
   if (loading) {
-    return <p>Loading...</p>
+    return (
+      <Layout>
+        <p>Loading...</p>
+      </Layout>
+    )
   }
 
   return (

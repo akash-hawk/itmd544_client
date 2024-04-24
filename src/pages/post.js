@@ -57,7 +57,11 @@ function MyPostsPage() {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <Layout>
+        <p>Loading...</p>
+      </Layout>
+    )
   }
 
   if (data && data.getPostById) {

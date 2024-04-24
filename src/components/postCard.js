@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 function truncateText(text, maxLength) {
@@ -16,12 +15,12 @@ function PostCard({ post }) {
 
   return (
     <Card className="mb-2 d-flex flex-column h-100">
-      {/* <Card.Img variant="top" src="https://picsum.photos/seed/picsum/100/40" /> */}
       <Card.Body>
         <Card.Title>{truncatedTitle}</Card.Title>
         <Card.Text>
           {truncatedBody}
         </Card.Text>
+        <p>Posted By: aka@gmail.com</p>
         <Link
           type="button"
           variant="dark btn btn-sm"

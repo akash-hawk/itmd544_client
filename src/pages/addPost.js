@@ -1,41 +1,40 @@
 import { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Layout from '../components/layout';
 
 const CREATE_POST = gql`
-  mutation CreatePost($title: String!, $body: String!, $userId: String!) {
-    createPost(title: $title, body: $body, userId: $userId) {
+  mutation CreatePost($title: String!, $body: String!) {
+    createPost(title: $title, body: $body) {
       success
-      userId
       message
     }
   }
 `;
 
 function AddPostForm() {
-  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-
   const [createPost, { loading, error, data }] = useMutation(CREATE_POST);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await createPost({ variables: { title, body, userId: '3719ebd2-2357-498a-96ac-2aeece1b4984' } });
+      const { data } = await createPost({ variables: { title, body } });
       console.log(data);
-      alert("Post added successfully!");
       setTitle('');
       setBody('');
-      navigate("/posts");
+      window.location.href = '/posts';
     } catch (error) {
-      console.error(error);
-      alert("Something went wrong!");
+      alert(error.message);
     }
   };
+
+  function putText() {
+    let text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+    setBody(body + " " + text);
+  }
 
   return (
     <Layout>
@@ -65,8 +64,9 @@ function AddPostForm() {
           required
         />
       </Form.Group>
+      <Button onClick={putText} variant='sm text'>Generate Random Text</Button>
 
-      <Button variant="dark btn-md" className='w-100' type="submit" disabled={loading}>
+      <Button variant="dark btn-md" className='w-100 mt-5' type="submit" disabled={loading}>
         {loading ? 'Adding...' : '+ Add Post'}
       </Button>
 

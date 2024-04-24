@@ -6,18 +6,7 @@ import PostCard from '../components/postCard';
 import Layout from '../components/layout';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const GET_POSTS_BY_USER_ID = gql`
-  query GetPostByUserId($userId: String!) {
-    getPostByUserId(userId: $userId) {
-      id
-      title
-      body
-      userId
-      createdAt
-    }
-  }
-`;
+import { GET_POSTS_BY_USER_ID } from '../controllers/queries/post';
 
 function MyPostsPage() {
   const navigate = useNavigate();

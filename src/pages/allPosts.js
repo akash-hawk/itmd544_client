@@ -4,26 +4,12 @@ import Col from 'react-bootstrap/Col';
 
 import PostCard from '../components/postCard';
 import Layout from '../components/layout';
+import { GET_ALL_POSTS } from '../controllers/queries/post';
 
-const query = gql`
-  query Query {
-    getPosts {
-      id
-      title
-      body
-      userId
-      user {
-        id
-        email
-      }
-      createdAt
-    }
-  }
-`
 
 function HomePage() {
 
-  const { data, loading } = useQuery(query);
+  const { data, loading } = useQuery(GET_ALL_POSTS);
 
   if (loading) {
     return <p>Loading...</p>

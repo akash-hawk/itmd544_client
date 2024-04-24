@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useMutation } from '@apollo/client';
+import React, { useEffect, useState } from "react";
+import { useLazyQuery, useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { gql } from 'graphql-tag';
 
@@ -14,33 +14,48 @@ function SignupPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const [createUser] = useMutation(gql`
+  const [createUser, { data, error }] = useMutation(gql`
     mutation CreateUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
       createUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+        token
         success
-        userId
         message
+        user {
+          id
+          firstName
+          lastName
+          email
+          active
+          profileImage
+          userType
+        }
       }
     }
   `);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const { data } = await createUser({
-        variables: { firstName, lastName, email, password },
-      });
-      if (data.createUser.success) {
-        localStorage.setItem('userId', data.createUser.userId);
-        navigate("/login");
+    await createUser({  variables: { firstName, lastName, email, password } });
+  };
+
+  useEffect(()=>{
+    if(data) {
+      const {createUser} = data;
+      console.log(createUser.user);
+      if (createUser.success) {
+        localStorage.setItem('token', createUser.token);
+        localStorage.setItem('user', JSON.stringify(createUser.user));
+        localStorage.setItem('email', createUser.user.email);
+        localStorage.setItem('userId', createUser.user.id);
+        navigate("/");
       } else {
-        alert(data.createUser.message);
+        alert(createUser.message);
       }
-    } catch (error) {
-      console.error("Error creating user:", error);
+    }
+    if (error) {
       alert(error.message);
     }
-  };
+  }, [data, error]);
 
   return (
     <Container className="mt-5">

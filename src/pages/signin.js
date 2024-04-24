@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLazyQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { gql } from 'graphql-tag';
@@ -16,10 +16,18 @@ function SigninPage() {
   const [getUserToken, { data, error }] = useLazyQuery(gql`
     query GetUserToken($email: String!, $password: String!) {
       getUserToken(email: $email, password: $password) {
-        userId
         token
         success
         message
+        user {
+          id
+          firstName
+          lastName
+          email
+          active
+          profileImage
+          userType
+        }
       }
     }
   `);
@@ -27,19 +35,26 @@ function SigninPage() {
   const handleSubmit = async (event) => {
     event.preventDefault(); 
     await getUserToken({ variables: { email, password } });
-    if (data && data.getUserToken && data.getUserToken.success) {
-      localStorage.setItem('token', data.getUserToken.token);
-      localStorage.setItem('userId', data.getUserToken.userId);
-      navigate("/");
-    } else {
-      alert(data.getUserToken.message);
-    }
-
-    if (error) {
-      console.log(error.message);
-      alert("Authentication failed. Please check your credentials.");
-    }
   };
+
+  useEffect(()=>{
+    if(data) {
+      const {getUserToken} = data;
+      console.log(getUserToken.user);
+      if (getUserToken.success) {
+        localStorage.setItem('token', getUserToken.token);
+        localStorage.setItem('user', JSON.stringify(getUserToken.user));
+        localStorage.setItem('email', getUserToken.user.email);
+        localStorage.setItem('userId', getUserToken.user.id);
+        navigate("/");
+      } else {
+        alert(getUserToken.message);
+      }
+    }
+    if (error) {
+      alert(error.message);
+    }
+  }, [data, error]);
 
   return (
     <Container className="mt-5">

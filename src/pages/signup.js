@@ -112,6 +112,7 @@ function SignupPage() {
         </Form>
         <p>Already have an account ? <Link to={"/signin"}>Signin</Link></p>
       </Container>
+      <p>Click <Link to="/about">here</Link> to learn more about this project</p>
     </Container>
   )
 }

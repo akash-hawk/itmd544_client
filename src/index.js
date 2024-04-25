@@ -7,7 +7,7 @@ import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const prod = true;
+const prod = false;
 let url = "https://itmd544-server.onrender.com/graphql";
 
 if(!prod) {

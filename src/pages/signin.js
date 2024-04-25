@@ -88,6 +88,7 @@ function SigninPage() {
         </Form>
         <p>New Here ? <Link to={"/signup"}>Signup</Link></p>
       </Container>
+      <p>Click <Link to="/about">here</Link> to learn more about this project</p>
     </Container>
   )
 }

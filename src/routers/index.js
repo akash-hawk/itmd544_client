@@ -14,6 +14,7 @@ import EditPostPage from '../pages/editPost';
 import ErrorPage from '../pages/error';
 import UsersPage from '../pages/users';
 import PrivateRoutes from "./protected";
+import AboutPage from "../pages/about";
 
 const AppRouter = () => {
   return (
@@ -32,6 +33,7 @@ const AppRouter = () => {
           <Route path="/users" element={<UsersPage />} />
         </Route>
 
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/signin" element={<SigninPage />} />
           <Route path="/signup" element={<SignupPage />} />     
           <Route path="/:anything" element={<ErrorPage />} />  

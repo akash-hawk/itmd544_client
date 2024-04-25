@@ -180,7 +180,6 @@ function MyPostsPage() {
           <div class="mb-5">
             <h3>Comments</h3>
             <ListGroup>
-              <ListGroup.Item>Cras justo odio</ListGroup.Item>
               {commentData && commentData.getCommentsByPostId.map(comment => (
                 <ListGroup.Item key={comment.id}>{comment.body}</ListGroup.Item>
               ))}

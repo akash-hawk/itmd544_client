@@ -24,6 +24,10 @@ export const GET_POSTS_BY_USER_ID = gql`
       body
       userId
       createdAt
+      user {
+        id
+        email
+      }
     }
   }
 `;

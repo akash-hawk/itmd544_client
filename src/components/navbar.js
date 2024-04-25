@@ -8,12 +8,14 @@ import { Link, useLocation } from 'react-router-dom';
 function NavigationBar() {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
+  const [active, setActive] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem('user'));
     setEmail(localStorage.getItem("email"));
     setRole(user.userType);
+    setActive(user.active);
   }, []);
 
   function signout() {
@@ -39,7 +41,7 @@ function NavigationBar() {
             {role === "admin" && <Nav.Link as={Link} to="/users" active={isActiveLink("/users")}>All Users</Nav.Link>}
           </Nav>
           <Nav>
-            <Button className='sm btn-light' as={Link} to="/post/new">Create Post</Button>
+            {active && <Button className='sm btn-light' as={Link} to="/post/new">Create Post</Button>}
             <Button variant='sm' className='btn-outline-danger' style={{marginLeft: "16px"}} onClick={signout}>Signout</Button>
           </Nav>
         </Navbar.Collapse>

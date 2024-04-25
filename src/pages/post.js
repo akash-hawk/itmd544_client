@@ -19,6 +19,7 @@ const GET_POSTS_BY_USER_ID = gql`
       user {
         id
         email
+        active
       }
     }
   }
@@ -129,44 +130,50 @@ function MyPostsPage() {
           </p>
           {
             postData.getPostById.user.id === activeUserId
-            ?   <><Button
-            className='btn btn-sm btn-dark'
-            as={Link}
-            to={`/post/edit/${postData.getPostById.id}`}>
-            Edit Post
-          </Button>
+              ? <><Button
+                className='btn btn-sm btn-dark'
+                as={Link}
+                to={`/post/edit/${postData.getPostById.id}`}>
+                Edit Post
+              </Button>
 
-          <Button
-            className='btn btn-sm btn-outline-danger'
-            variant='text'
-            style={{ marginLeft: "12px" }}
-            onClick={handleDelete}>
-            Delete Post
-          </Button>
-          </>
-          : null
+                <Button
+                  className='btn btn-sm btn-outline-danger'
+                  variant='text'
+                  style={{ marginLeft: "12px" }}
+                  onClick={handleDelete}>
+                  Delete Post
+                </Button>
+              </>
+              : null
           }
 
           <hr />
 
           <div className='bg-light p-4'>
             <h3>Add New Comment</h3>
-            <Form.Group className="mb-3" controlId="body">
-              <Form.Control
-                as="textarea"
-                rows={2}
-                placeholder="Enter Comment"
-                value={commentBody}
-                onChange={(e) => setCommentBody(e.target.value)}
-                required
-              />
-            </Form.Group>
-            <br />
-            <Button
-              onClick={handleCommentSubmit}
-              className='btn btn-sm btn-dark'>
-              Make Comment
-            </Button>
+            {
+              postData.getPostById.user.active
+                ? <><Form.Group className="mb-3" controlId="body">
+                  <Form.Control
+                    as="textarea"
+                    rows={2}
+                    placeholder="Enter Comment"
+                    value={commentBody}
+                    onChange={(e) => setCommentBody(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+                  <br />
+                  <Button
+                    onClick={handleCommentSubmit}
+                    className='btn btn-sm btn-dark'>
+                    Make Comment
+                  </Button>
+                </>
+                : <p><b>Comments Disabled!</b> You have been blocked by the admin</p>
+            }
+
           </div>
           <hr />
           <div class="mb-5">

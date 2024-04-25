@@ -13,24 +13,28 @@ import AddPostPage from '../pages/addPost';
 import EditPostPage from '../pages/editPost';
 import ErrorPage from '../pages/error';
 import UsersPage from '../pages/users';
+import PrivateRoutes from "./protected";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signin" element={<SigninPage />} />
-        <Route path="/signup" element={<SignupPage />} />
 
-        <Route path="/post/new" element={<AddPostPage />} />
-        <Route path="/post/edit/:id" element={<EditPostPage />} />
-        <Route path="/posts/all" element={<AllPostsPage />} />
-        <Route path="/posts/:id" element={<PostPage />} />
-        <Route path="/community/all" element={<CommunityPage />} />
-        <Route path="/community/:id" element={<CommunityPostPage />} />
-        <Route path="/myposts" element={<PostsPage />} />
-        <Route path="/users" element={<UsersPage />} />
-        <Route path="/:anything" element={<ErrorPage />} />  
+        <Route element={<PrivateRoutes/>}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/post/new" element={<AddPostPage />} />
+          <Route path="/post/edit/:id" element={<EditPostPage />} />
+          <Route path="/posts/all" element={<AllPostsPage />} />
+          <Route path="/posts/:id" element={<PostPage />} />
+          <Route path="/community/all" element={<CommunityPage />} />
+          <Route path="/community/:id" element={<CommunityPostPage />} />
+          <Route path="/myposts" element={<PostsPage />} />
+          <Route path="/users" element={<UsersPage />} />
+        </Route>
+
+          <Route path="/signin" element={<SigninPage />} />
+          <Route path="/signup" element={<SignupPage />} />     
+          <Route path="/:anything" element={<ErrorPage />} />  
       </Routes>
     </BrowserRouter>
   );

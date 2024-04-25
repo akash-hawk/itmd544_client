@@ -7,8 +7,15 @@ import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const prod = true;
+let url = "https://itmd544-server.onrender.com/graphql";
+
+if(!prod) {
+  url = "http://localhost:8000/graphql";
+}
+
 const client = new ApolloClient({
-  uri: "http://localhost:8000/graphql",
+  uri: url,
   cache: new InMemoryCache(),
   headers: {
     token: localStorage.getItem("token") || ""

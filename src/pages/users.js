@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import Layout from '../components/layout';
-import { useNavigate } from 'react-router-dom';
 import UserCard from '../components/userCard';
 
 const GET_USERS = gql`

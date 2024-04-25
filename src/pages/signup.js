@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLazyQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import { gql } from 'graphql-tag';
 

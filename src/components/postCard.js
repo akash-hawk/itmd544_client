@@ -9,7 +9,7 @@ function truncateText(text, maxLength) {
   return text.substr(0, maxLength) + "...";
 }
 
-function PostCard({ post }) {
+function PostCard({ post, commPost = false }) {
   const truncatedTitle = truncateText(post.title, 50);
   const truncatedBody = truncateText(post.body, 150);
 
@@ -24,7 +24,7 @@ function PostCard({ post }) {
         <Link
           type="button"
           variant="dark btn btn-sm"
-          to={`/posts/${post.id}`}
+          to={commPost ? `/community/${post.id}` : `/posts/${post.id}`}
         >
           View Post
         </Link>

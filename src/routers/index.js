@@ -6,6 +6,8 @@ import SigninPage from '../pages/signin';
 import SignupPage from '../pages/signup';
 import AllPostsPage from '../pages/allPosts';
 import PostsPage from '../pages/posts';
+import CommunityPage from '../pages/community';
+import CommunityPostPage from '../pages/commPost';
 import PostPage from '../pages/post';
 import AddPostPage from '../pages/addPost';
 import EditPostPage from '../pages/editPost';
@@ -24,6 +26,8 @@ const AppRouter = () => {
         <Route path="/post/edit/:id" element={<EditPostPage />} />
         <Route path="/posts/all" element={<AllPostsPage />} />
         <Route path="/posts/:id" element={<PostPage />} />
+        <Route path="/community/all" element={<CommunityPage />} />
+        <Route path="/community/:id" element={<CommunityPostPage />} />
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/:anything" element={<ErrorPage />} />  

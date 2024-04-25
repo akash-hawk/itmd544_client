@@ -26,7 +26,8 @@ function NavigationBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/posts">My Posts</Nav.Link>
-            <Nav.Link as={Link} to="/posts/all">Community Posts</Nav.Link>
+            <Nav.Link as={Link} to="/posts/all">All Posts</Nav.Link>
+            <Nav.Link as={Link} to="/community/all">Community</Nav.Link>
             <Nav.Link as={Link} to="/users">All Users</Nav.Link>
             <Nav.Link as={Link} to="/post/new">Create Post</Nav.Link>
           </Nav>

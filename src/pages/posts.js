@@ -35,7 +35,7 @@ function MyPostsPage() {
       <div className='mt-5'>
         <h2>My Posts</h2>
         <Row>
-          {data.getPostByUserId.length ? (
+          {data?.getPostByUserId.length ? (
             data.getPostByUserId.map((post) => (
               <Col key={post.id} xs={12} md={6} className="mb-2">
                 <PostCard post={post} />

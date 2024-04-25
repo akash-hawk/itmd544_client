@@ -22,7 +22,6 @@ const GET_USERS = gql`
 `;
 
 function UsersPage() {
-  const navigate = useNavigate();
   const { loading, error, data } = useQuery(GET_USERS);
 
   if (error) return <p>Error: {error.message}</p>;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { gql } from 'graphql-tag';
 
 import Container from 'react-bootstrap/Container';
@@ -106,6 +106,7 @@ function SignupPage() {
           </Button>
           
         </Form>
+        <p>Already have an account ? <Link to={"/signin"}>Signin</Link></p>
       </Container>
     </Container>
   )

@@ -25,7 +25,7 @@ function AddPostForm() {
       console.log(data);
       setTitle('');
       setBody('');
-      window.location.href = '/posts';
+      window.location.href = '/myposts';
     } catch (error) {
       alert(error.message);
     }

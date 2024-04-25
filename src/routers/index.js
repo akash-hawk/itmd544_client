@@ -28,7 +28,7 @@ const AppRouter = () => {
         <Route path="/posts/:id" element={<PostPage />} />
         <Route path="/community/all" element={<CommunityPage />} />
         <Route path="/community/:id" element={<CommunityPostPage />} />
-        <Route path="/posts" element={<PostsPage />} />
+        <Route path="/myposts" element={<PostsPage />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/:anything" element={<ErrorPage />} />  
       </Routes>

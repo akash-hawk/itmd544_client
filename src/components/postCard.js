@@ -20,7 +20,7 @@ function PostCard({ post, commPost = false }) {
         <Card.Text>
           {truncatedBody}
         </Card.Text>
-        <p>Posted By: aka@gmail.com</p>
+        <p className="text-secondary">Posted By: {post?.user?.email || "Community"}</p>
         <Link
           type="button"
           variant="dark btn btn-sm"

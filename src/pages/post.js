@@ -64,6 +64,7 @@ const DELETE_POST = gql`
 
 function MyPostsPage() {
   const activeUserId = localStorage.getItem("userId");
+  const isactiveUser = JSON.parse(localStorage.getItem("user")).active;
   const { id } = useParams();
   const { data: postData, loading: postLoading } = useQuery(GET_POSTS_BY_USER_ID, {
     variables: { postId: id },
@@ -153,7 +154,7 @@ function MyPostsPage() {
           <div className='bg-light p-4'>
             <h3>Add New Comment</h3>
             {
-              postData.getPostById.user.active
+              isactiveUser
                 ? <><Form.Group className="mb-3" controlId="body">
                   <Form.Control
                     as="textarea"

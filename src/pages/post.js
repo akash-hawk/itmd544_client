@@ -184,7 +184,6 @@ function MyPostsPage() {
                 <ListGroup.Item key={comment.id}>{comment.body}</ListGroup.Item>
               ))}
             </ListGroup>
-
           </div>
         </div>
       </Layout>

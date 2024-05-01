@@ -1,6 +1,6 @@
 // router.js
 import * as React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom"; // Import Routes instead of Route
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from '../pages/home';
 import SigninPage from '../pages/signin';
 import SignupPage from '../pages/signup';
